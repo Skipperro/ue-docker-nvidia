@@ -7,7 +7,7 @@
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
 export WINEPREFIX="$script_dir/wineprefix"
-export WINEDEBUG="-all"
+#export WINEDEBUG="-all"
 
 if [ "$1" = "--clean" ]; then
     echo "--clean parameter detected. Deleting existing wineprefix..."
