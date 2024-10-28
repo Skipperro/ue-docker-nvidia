@@ -11,10 +11,10 @@ sleep 1
 export DISPLAY=:1
 
 # Start x11vnc in the background
-x11vnc -display :1 -nopw -forever -shared -ncache 10 &
+x11vnc -display :1 -nopw -forever -shared -ncache 10 -rfbport 5566 &
 
 # Start noVNC in the background
-/opt/noVNC/utils/novnc_proxy --vnc localhost:5900 &
+/opt/noVNC/utils/novnc_proxy --vnc localhost:5566 --listen 5678 &
 
 # Start the application
 cd /app
