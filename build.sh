@@ -24,7 +24,6 @@ else
     echo "Installing required Windows libraries..."
     mkdir "$WINEPREFIX"
     chmod -R 777 "$WINEPREFIX"
-    wineboot -init
     wineboot -u
     winetricks --self-update
     echo "Installing Visual C++ Redistributables and DirectX 11 (DXVK)..."
