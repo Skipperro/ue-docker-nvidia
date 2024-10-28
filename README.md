@@ -49,7 +49,7 @@ cd ue-docker-nvidia
 > [!NOTE]
 > Because building wineprefix to run Unreal Engine applications requires GUI, thus it's not running well on systems without desktop environment, as part of the image building the already **prepared wineprefix will be downloaded** from https://public.skipperro.net/ue-docker-nvidia-wineprefix.zip (625 MB)
 > 
-> If you would like to build wineprefix yourself, you will find instructions [on the bottom](#buil) on this page.
+> If you would like to build wineprefix yourself, you will find instructions [on the bottom](#building-custom-wineprefix) on this page.
 ```
 sudo sh build.sh
 ```
