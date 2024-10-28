@@ -42,6 +42,19 @@ else
     $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh install
     chmod -R 777 "$WINEPREFIX"
     chmod -R 777 "$script_dir/vkd3d"
+
+    echo Installing Wine-Mono...
+    sleep 5
+    # Set variables
+    WINE_MONO_VERSION="9.0.0"
+    WINE_MONO_URL="https://dl.winehq.org/wine/wine-mono/${WINE_MONO_VERSION}/wine-mono-${WINE_MONO_VERSION}-x86.msi"
+    
+    # Download wine-mono
+    wget "${WINE_MONO_URL}" -O "wine-mono-${WINE_MONO_VERSION}-x86.msi"
+    
+    # Install wine-mono
+    wine msiexec /i "wine-mono-${WINE_MONO_VERSION}-x86.msi"
+    rm wine-mono-${WINE_MONO_VERSION}-x86.msi
 fi
 
 # Build image
