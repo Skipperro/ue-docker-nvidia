@@ -7,13 +7,12 @@
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
 export WINEPREFIX="$script_dir/wineprefix"
-#export WINEDEBUG="-all"
+export WINEDEBUG="-all"
 
 if [ "$1" = "--clean" ]; then
     echo "--clean parameter detected. Deleting existing wineprefix..."
     sleep 2
     rm -rf "$WINEPREFIX"
-    rm -rf $script_dir/vkd3d
     sleep 2
 fi
 
@@ -21,29 +20,15 @@ if [ -d "$WINEPREFIX" ]; then
     echo "Wineprefix under $WINEPREFIX already exists. Skipping..."
 else
     # Create wineprefix for running Unreal Engine apps in both DirectX 11 and DirectX 12
-    echo "Installing required Windows libraries..."
+    echo "Downloading Wineprefix from skipperro.net..."
     mkdir "$WINEPREFIX"
     chmod -R 777 "$WINEPREFIX"
     wineboot -u
-    winetricks --self-update
-    echo "Installing Visual C++ Redistributables and DirectX 11 (DXVK)..."
-    sleep 5    
-    winetricks -q vcrun2022
-    winetricks -q dxvk2030
-    winetricks -q win10
-    if [ ! -d $script_dir/vkd3d ]; then
-        apt install -y tar zstd
-        mkdir -p $script_dir/vkd3d
-        sleep 1
-        wget -qO- https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.8/vkd3d-proton-2.8.tar.zst | tar -I zstd -x -C $script_dir/vkd3d
-        sleep 1
-    fi
-    chmod +x $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh
-    echo "Installing DirectX 12 (VKD3D)..."
-    sleep 5    
-    $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh install
+    # URL to download
+    URL="https://public.skipperro.net/ue-docker-nvidia-wineprefix.zip"
+    wget -O "$WINEPREFIX/ue-docker-nvidia-wineprefix.zip" "$URL"
+    unzip -o "$WINEPREFIX/ue-docker-nvidia-wineprefix.zip" -d "$WINEPREFIX"
     chmod -R 777 "$WINEPREFIX"
-    chmod -R 777 "$script_dir/vkd3d"
 fi
 
 # Build image
