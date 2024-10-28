@@ -1,5 +1,5 @@
 services:
-  vue-docker-nvidia:
+  ue-docker-nvidia:
     build: .
     image: ue-docker-nvidia
     network_mode: "host"
