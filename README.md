@@ -4,22 +4,22 @@ Run Windows Unreal Engine applications inside a Linux docker container using NVI
 > [!CAUTION]
 > This is just a proof of concept and work in progress piece of code. It works on my machine and with my application.
 >
-> Your milage may vary. Run at your own risk ❗
+> Your milage may vary. **Run at your own risk** ❗
 
 ## Features
-- Supports DirectX 11 and 12 applications with output to Vulkan.
-- noVNC server included.
-- MangoHud included.
+- Supports **DirectX 11 and 12** applications with output to Vulkan.
+- **noVNC** server included.
+- **MangoHud** included.
 
 ## Specs
-- Wine 9.0
-- DXVK 1.10.3
-- VKD3D 2.8
+- **Wine** 9.0
+- **DXVK** 1.10.3
+- **VKD3D** 2.8
 
 ## Instructions
 ### System requirements
-- NVIDIA GPU with drivers 535.xx or newer.
-- Linux Kernel 5.x or newer.
+- NVIDIA GPU with drivers **535.xx** or newer.
+- Linux Kernel **5.x** or newer.
 - Internet connection.
 
 ### Install docker
@@ -47,9 +47,9 @@ cd ue-docker-nvidia
 ```
 ### Build image
 > [!NOTE]
-> Because building wineprefix to run Unreal Engine applications requires GUI, thus it's not running well on systems without desktop environment, as part of the image building the already prepared wineprefix will be downloaded.
+> Because building wineprefix to run Unreal Engine applications requires GUI, thus it's not running well on systems without desktop environment, as part of the image building the already **prepared wineprefix will be downloaded** from https://public.skipperro.net/ue-docker-nvidia-wineprefix.zip (625 MB)
 > 
-> If you would like to build wineprefix yourself, you will find instructions somewhere below on this page.
+> If you would like to build wineprefix yourself, you will find instructions [on the bottom](#buil) on this page.
 ```
 sudo sh build.sh
 ```
