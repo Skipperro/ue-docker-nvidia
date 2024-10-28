@@ -1,6 +1,11 @@
 # ue-docker-nvidia
 Run Windows Unreal Engine applications inside a Linux docker container using NVIDIA GPU.
 
+> [!CAUTION]
+> This is just a proof of concept and work in progress piece of code. It works on my machine and with my application. Your milage may vary.
+>
+> Run at your own risk ❗
+
 ## Features
 - Supports DirectX 11 and 12 applications with output to Vulkan.
 - noVNC server included.
@@ -34,4 +39,19 @@ curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dear
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 ```
+### Clone this repository
+```
+git clone https://github.com/Skipperro/ue-docker-nvidia.git
+cd ue-docker-nvidia
+```
+### Build image
+> [!NOTE]
+> Because building wineprefix to run Unreal Engine applications requires GUI, thus it's not running well on systems without desktop environment, as part of the image building the already prepared wineprefix will be downloaded.
+> 
+> If you would like to build wineprefix yourself, you will find instructions somewhere below on this page.
+```
+sudo sh build.sh
+```
+
+### Copy app
 
