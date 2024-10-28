@@ -24,6 +24,7 @@ else
     echo "Installing required Windows libraries..."
     mkdir "$WINEPREFIX"
     chmod -R 777 "$WINEPREFIX"
+    wineboot -init
     wineboot -u
     winetricks --self-update
     echo "Installing Visual C++ Redistributables and DirectX 11 (DXVK)..."
@@ -44,14 +45,6 @@ else
     $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh install
     chmod -R 777 "$WINEPREFIX"
     chmod -R 777 "$script_dir/vkd3d"
-
-    echo Installing Wine-Mono...
-    sleep 5
-    WINE_MONO_VERSION="9.3.0"
-    WINE_MONO_URL="https://dl.winehq.org/wine/wine-mono/${WINE_MONO_VERSION}/wine-mono-${WINE_MONO_VERSION}-x86.msi"
-    wget "${WINE_MONO_URL}" -O "wine-mono-${WINE_MONO_VERSION}-x86.msi"
-    wine msiexec /i "wine-mono-${WINE_MONO_VERSION}-x86.msi"
-    rm wine-mono-${WINE_MONO_VERSION}-x86.msi
 fi
 
 # Build image
