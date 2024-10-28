@@ -11,8 +11,10 @@ export WINEDEBUG="-all"
 
 if [ "$1" = "--clean" ]; then
     echo "--clean parameter detected. Deleting existing wineprefix..."
+    sleep 2
     rm -rf "$WINEPREFIX"
     rm -rf $script_dir/vkd3d
+    sleep 2
 fi
 
 if [ -d "$WINEPREFIX" ]; then
@@ -24,21 +26,29 @@ else
     chmod -R 777 "$WINEPREFIX"
     wineboot -u
     winetricks --self-update
+    echo "Installing Visual C++ Redistributables and DirectX 11 (DXVK)..."
+    sleep 5    
     winetricks -q vcrun2022 dxvk1103 win10
     if [ ! -d $script_dir/vkd3d ]; then
         apt install -y tar zstd
         mkdir -p $script_dir/vkd3d
         sleep 1
         wget -qO- https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.8/vkd3d-proton-2.8.tar.zst | tar -I zstd -x -C $script_dir/vkd3d
+        sleep 1
     fi
     chmod +x $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh
+    echo "Installing DirectX 12 (VKD3D)..."
+    sleep 5    
     $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh install
     chmod -R 777 "$WINEPREFIX"
+    chmod -R 777 "$script_dir/vkd3d"
 fi
 
 # Build image
 echo "Building docker image..."
+sleep 5
 docker compose build
+sleep 1
 
 # Final notes
 echo "====================================================================================="
