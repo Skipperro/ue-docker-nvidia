@@ -1,0 +1,36 @@
+services:
+  vue-docker-nvidia:
+    build: .
+    image: ue-docker-nvidia
+    network_mode: "host"
+    container_name: ue-docker-nvidia
+    environment:
+      WINEPREFIX: "/wineprefix"
+      NVIDIA_DISABLE_REQUIRE: "1"
+      NVIDIA_DRIVER_CAPABILITIES: all
+      DISPLAY: :1
+      WINEDEBUG: "-all"
+      RUN_ARGS: "${RUN_ARGS}"
+      MANGOHUD: 1
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/snd:/dev/snd
+    volumes:
+      - /etc/vulkan/icd.d/nvidia_icd.json:/etc/vulkan/icd.d/nvidia_icd.json
+      - /etc/vulkan/implicit_layer.d/nvidia_layers.json:/etc/vulkan/implicit_layer.d/nvidia_layers.json
+      - /usr/share/glvnd/egl_vendor.d/10_nvidia.json:/usr/share/glvnd/egl_vendor.d/10_nvidia.json
+      - ./app:/app:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+
+# wine /app/Arcware_Template/Binaries/Win64/Arcware_Template.exe -dx11 -PixelStreamingURL=ws://signalling-stream.ragnarok.arcware.cloud:80/?df-87e9dbd2-213e-4257-af4c-271649e78536 -PixelStreamingEncoderCodec=VP9 -PixelStreamingEncoderMaxBitrate=16000000 -PixelStreamingWebRTCMaxBitrate=16000000
