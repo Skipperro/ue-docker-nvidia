@@ -28,7 +28,9 @@ else
     winetricks --self-update
     echo "Installing Visual C++ Redistributables and DirectX 11 (DXVK)..."
     sleep 5    
-    winetricks -q vcrun2022 dxvk1103 win10
+    winetricks -q vcrun2022
+    winetricks -q dxvk2030
+    winetricks -q win10
     if [ ! -d $script_dir/vkd3d ]; then
         apt install -y tar zstd
         mkdir -p $script_dir/vkd3d
@@ -45,14 +47,9 @@ else
 
     echo Installing Wine-Mono...
     sleep 5
-    # Set variables
     WINE_MONO_VERSION="9.3.0"
     WINE_MONO_URL="https://dl.winehq.org/wine/wine-mono/${WINE_MONO_VERSION}/wine-mono-${WINE_MONO_VERSION}-x86.msi"
-    
-    # Download wine-mono
     wget "${WINE_MONO_URL}" -O "wine-mono-${WINE_MONO_VERSION}-x86.msi"
-    
-    # Install wine-mono
     wine msiexec /i "wine-mono-${WINE_MONO_VERSION}-x86.msi"
     rm wine-mono-${WINE_MONO_VERSION}-x86.msi
 fi
