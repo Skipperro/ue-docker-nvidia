@@ -12,6 +12,7 @@ export WINEDEBUG="-all"
 if [ "$1" = "--clean" ]; then
     echo "--clean parameter detected. Deleting existing wineprefix..."
     rm -rf "$WINEPREFIX"
+    rm -rf $script_dir/vkd3d
 fi
 
 if [ -d "$WINEPREFIX" ]; then
@@ -24,8 +25,14 @@ else
     wineboot -u
     winetricks --self-update
     winetricks -q vcrun2022 dxvk1103 win10
-    chmod +x vkd3d/setup_vkd3d_proton.sh
-    vkd3d/setup_vkd3d_proton.sh install
+    if [ ! -d $script_dir/vkd3d ]; then
+        apt install -y tar zstd
+        mkdir -p $script_dir/vkd3d
+        sleep 1
+        wget -qO- https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.8/vkd3d-proton-2.8.tar.zst | tar -I zstd -x -C $script_dir/vkd3d
+    fi
+    chmod +x $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh
+    $script_dir/vkd3d/vkd3d-proton-2.8/setup_vkd3d_proton.sh install
     chmod -R 777 "$WINEPREFIX"
 fi
 
