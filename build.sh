@@ -46,7 +46,7 @@ else
     echo Installing Wine-Mono...
     sleep 5
     # Set variables
-    WINE_MONO_VERSION="9.0.0"
+    WINE_MONO_VERSION="9.3.0"
     WINE_MONO_URL="https://dl.winehq.org/wine/wine-mono/${WINE_MONO_VERSION}/wine-mono-${WINE_MONO_VERSION}-x86.msi"
     
     # Download wine-mono
