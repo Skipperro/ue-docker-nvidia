@@ -2,9 +2,9 @@
 Run Windows Unreal Engine applications inside a Linux docker container using NVIDIA GPU.
 
 > [!CAUTION]
-> This is just a proof of concept and work in progress piece of code. It works on my machine and with my application. Your milage may vary.
+> This is just a proof of concept and work in progress piece of code. It works on my machine and with my application.
 >
-> Run at your own risk ❗
+> Your milage may vary. Run at your own risk ❗
 
 ## Features
 - Supports DirectX 11 and 12 applications with output to Vulkan.
@@ -53,5 +53,9 @@ cd ue-docker-nvidia
 sudo sh build.sh
 ```
 
-### Copy app
+### Copy your application to app directory
+Copy the whole UE application to the `app` directory. No zip files - It must be extracted.
 
+The included script will find the proper executable automatically, as long as there is just one .exe file in `Project/Binaries/Win64` directory.
+
+You can even have spaces in project name, but for now only one app can be present in the app directory.
