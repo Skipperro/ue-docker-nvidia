@@ -20,6 +20,7 @@ Run Windows Unreal Engine applications inside a Linux docker container using NVI
 ### System requirements
 - NVIDIA GPU with drivers 535.xx or newer.
 - Linux Kernel 5.x or newer.
+- Internet connection.
 
 ### Install docker
 Installation script is available at https://get.docker.com/
@@ -59,3 +60,13 @@ Copy the whole UE application to the `app` directory. No zip files - It must be 
 The included script will find the proper executable automatically, as long as there is just one .exe file in `Project/Binaries/Win64` directory.
 
 You can even have spaces in project name, but for now only one app can be present in the app directory.
+
+### Run the application
+```
+sudo sh run.sh [optional parameters to pass to UE application]
+```
+
+### Check if it's running using VNC
+Just visit http://localhost:5678/
+
+Replace `localhost` with IP if you are testing from different device.
