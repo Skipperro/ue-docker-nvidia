@@ -25,7 +25,7 @@ else
     chmod -R 777 "$WINEPREFIX"
     wineboot -u
     # URL to download
-    URL="https://public.skipperro.net/ue-docker-nvidia-wineprefix.zip"
+    URL="https://www.dropbox.com/scl/fi/h7q0mmm0zef0pnfhi6jcg/ue-docker-nvidia-wineprefix.zip?rlkey=5c2illa2fg30a8nhsm2tuqnsv&st=a20gv0fo&dl=1"
     wget -O "$WINEPREFIX/ue-docker-nvidia-wineprefix.zip" "$URL"
     unzip -o "$WINEPREFIX/ue-docker-nvidia-wineprefix.zip" -d "$WINEPREFIX"
     chmod -R 777 "$WINEPREFIX"
