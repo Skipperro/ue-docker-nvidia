@@ -77,5 +77,6 @@ While running via VNC or pixelstreaming use **Shift+F12** to bring up MangoHud w
 If you want to build your own wineprefix instead of downloading mine, here is what is required:
 - Mono installed (popup should show automatically on first run)
 - Visual C++ Redsitributables 2022 (winetricks vcrun2022). This works only in desktop environment.
+- Core Fonts installed (winetricks corefonts). This can take few minutes.
 - DXVK 1.10.3 (winedricks dxvk1103). Newer version might work, but might also cause conflicts with VKD3D.
 - VKD3D 2.8. Please download from GitHub. Since version 2.9 file structure is different and may cause issues with running UE apps.
