@@ -20,7 +20,7 @@ if [ -d "$WINEPREFIX" ]; then
     echo "Wineprefix under $WINEPREFIX already exists. Skipping..."
 else
     # Create wineprefix for running Unreal Engine apps in both DirectX 11 and DirectX 12
-    echo "Downloading Wineprefix from skipperro.net..."
+    echo "Downloading Wineprefix from Dropbox..."
     mkdir "$WINEPREFIX"
     chmod -R 777 "$WINEPREFIX"
     wineboot -u
